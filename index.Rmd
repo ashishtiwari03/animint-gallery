@@ -18,17 +18,20 @@ cat('<thead><tr>
 
 for(i in 1:nrow(dt)){
 
-  repo <- dt$viz_owner_repo[i]
+  repo_full <- dt$viz_owner_repo[i]
   title <- dt$title[i]
   source_url <- dt$source[i]
 
+  repo_name <- sub("ashishtiwari03/", "", repo_full)
+
+  demo_url <- paste0("https://ashishtiwari03.github.io/", repo_name, "/")
+
   cat("<tr>")
   cat("<td><b>", title, "</b></td>")
-  cat('<td><a class="btn btn-success btn-sm" target="_blank" href="https://',
-      repo, '">Open Demo</a></td>', sep="")
+  cat('<td><a class="btn btn-success btn-sm" target="_blank" href="',
+      demo_url, '">Open Demo</a></td>', sep="")
   cat('<td><a target="_blank" href="', source_url, '">View Code</a></td>', sep="")
   cat("</tr>")
 }
-
 cat("</tbody></table>")
 ```
