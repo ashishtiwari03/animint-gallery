@@ -1,0 +1,34 @@
+---
+title: "Ashish Tiwari – Animint Gallery"
+output:
+  html_document:
+    self_contained: false
+    theme: cosmo
+---
+
+```{r, echo=FALSE, results='asis'}
+dt <- read.csv("meta.csv", stringsAsFactors = FALSE)
+
+cat('<table class="table table-striped">')
+cat('<thead><tr>
+<th>Project</th>
+<th>Live Demo</th>
+<th>Source Code</th>
+</tr></thead><tbody>')
+
+for(i in 1:nrow(dt)){
+
+  repo <- dt$viz_owner_repo[i]
+  title <- dt$title[i]
+  source_url <- dt$source[i]
+
+  cat("<tr>")
+  cat("<td><b>", title, "</b></td>")
+  cat('<td><a class="btn btn-success btn-sm" target="_blank" href="https://',
+      repo, '">Open Demo</a></td>', sep="")
+  cat('<td><a target="_blank" href="', source_url, '">View Code</a></td>', sep="")
+  cat("</tr>")
+}
+
+cat("</tbody></table>")
+```
